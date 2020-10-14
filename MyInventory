@@ -16,7 +16,7 @@
 # is up to you. I just called it MyLocalVMs
 #
 [MyLocalVMs]
-127.0.0.1  ansible_connection=local
+127.0.0.1 ansible_connection=local
 
 # Below I define an alias for the two VMs on my NAT network on
 # my laptop.  Note that, I needed to enable ssh connectivity between
@@ -27,9 +27,9 @@
 # that I was able to log into each other via passwordless ssh
 # Note that I just reused by chameleon private key but you can create
 # a completely new keypair via ssh-keygen
-[MyNATVMs]
-192.168.15.2 ansible_connection=ssh ansible_ssh_private_key_file=/home/gokhale/.ssh/gokhale_chameleoncloud.pem
-192.168.15.3 ansible_connection=ssh ansible_ssh_private_key_file=/home/gokhale/.ssh/gokhale_chameleoncloud.pem
+#[MyNATVMs]
+#192.168.15.2 ansible_connection=ssh ansible_ssh_private_key_file=/home/gokhale/.ssh/#gokhale_chameleoncloud.pem
+#192.168.15.3 ansible_connection=ssh ansible_ssh_private_key_file=/home/gokhale/.ssh/#gokhale_chameleoncloud.pem
 
 # Below I define my currently allocated VMs in the Chameleon Cloud and
 # their floating IP addresses. Naturally, you will need to change the IP
@@ -41,8 +41,14 @@
 #
 [MyChameleonVMs]
 # The following will need to be changed by the user (their floating IP on chameleon and the full name and location of the pem file)
-129.114.25.103 ansible_connection=ssh ansible_ssh_private_key_file=/home/osboxes/.ssh/xm.pem
-129.114.24.206 ansible_connection=ssh ansible_ssh_private_key_file=/home/osboxes/.ssh/xm.pem
+129.114.24.229 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/xm.pem
+129.114.24.206 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/xm.pem
+
+[CCVM2]
+129.114.24.206 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/xm.pem
+
+[CCVM3]
+129.114.24.229 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/xm.pem
 
 # If I have VMs on other cloud platforms, I can have more aliases
 #[MyAWSVMs]
