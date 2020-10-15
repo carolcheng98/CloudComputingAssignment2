@@ -1,0 +1,15 @@
+---
+- hosts: TestChameleonVMs
+  remote_user: cc
+  gather_facts: no
+  become: true
+  collections:
+    - openstack.cloud
+
+  tasks:
+  - name: start kafka servers on VM2 and VM3
+    shell: |
+      cd /home/cc/kafka_2.13-2.4.0
+      bin/kafka-server-stop.sh
+      bin/kafka-server-start.sh -daemon config/server.properties
+...

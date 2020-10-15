@@ -1,0 +1,13 @@
+---
+- hosts: TestVM3
+  remote_user: cc
+  become: yes
+  collections:
+    - openstack.cloud
+
+  tasks:
+  - name: config kafka without zookeeper - VM3
+    copy:
+      src: vm3_kafka/server.properties
+      dest: /home/cc/kafka_2.13-2.4.0/config
+...

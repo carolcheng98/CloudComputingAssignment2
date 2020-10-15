@@ -1,0 +1,19 @@
+---
+- hosts: TestChameleonVMs
+  remote_user: cc
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: Update APT package manager repositories cache
+    apt:
+      update_cache: yes
+  - name: install JAVA
+    apt:
+      name: default-jdk
+      state: present
+  - name: download Kafka
+    shell: |
+        wget http://www-us.apache.org/dist/kafka/2.4.0/kafka_2.13-2.4.0.tgz
+        tar xzf kafka_2.13-2.4.0.tgz
+...

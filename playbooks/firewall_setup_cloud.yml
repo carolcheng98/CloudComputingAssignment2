@@ -1,0 +1,15 @@
+---
+- hosts: TestChameleonVMs
+  remote_user: cc
+  become: true
+
+#2182-zookeeper
+#5984-couchdb
+#9092-kafka
+  tasks:
+  - name: firewall setup
+    shell: |
+      ufw allow 2181
+      ufw allow 5984
+      ufw allow 9092
+...

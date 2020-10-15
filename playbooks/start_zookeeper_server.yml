@@ -1,0 +1,15 @@
+---
+- hosts: TestVM2 #with zookeeper
+  remote_user:  cc
+  become: true
+  gather_facts: no
+  collections:
+  - openstack.cloud
+
+  tasks:
+  - name: start zookeeper server on VM2
+    shell: |
+        cd /home/cc/kafka_2.13-2.4.0
+        bin/zookeeper-server-stop.sh
+        bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+...

@@ -1,0 +1,38 @@
+---
+- name: install couchDB on VM3
+  hosts: TestVM3
+  remote_user:  cc
+  become: true
+  gather_facts: no
+  collections:
+  - openstack.cloud
+
+  tasks:
+  - name: adding CouchDB GPG key
+    shell: |
+        curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add -
+        echo "deb https://apache.bintray.com/couchdb-deb bionic main" | sudo tee -a /etc/apt/sources.list
+  - name: update apt packages
+    apt:
+        update_cache: yes
+  - name: install couch db
+    apt:
+        name: couchdb
+        state: present
+  - name: couchDB set up
+    shell: |
+      COUCHDB_PASSWORD=123456
+      echo "couchdb couchdb/mode select standalone
+      couchdb couchdb/mode seen true
+      couchdb couchdb/nodename string admin
+      couchdb couchdb/nodename seen true
+      couchdb couchdb/cookie string elmo
+      couchdb couchdb/cookie seen true
+      couchdb couchdb/bindaddress string 0.0.0.0
+      couchdb couchdb/bindaddress seen true
+      couchdb couchdb/adminpass password 123456
+      couchdb couchdb/adminpass seen true
+      couchdb couchdb/adminpass_again password 123456
+      couchdb couchdb/adminpass_again seen true" | sudo debconf-set-selections
+      DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --force-yes couchdb
+...

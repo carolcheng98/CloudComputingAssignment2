@@ -100,7 +100,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "~/.ssh/xm.pem", destination: "~/.ssh/"
 
   # let's also copy our ansible.cfg, MyInventory and cloud.yaml file
-  config.vm.provision "file", source: "/.ansible.cfg", destination: "~/.ansible.cfg"
+  config.vm.provision "file", source: "./.ansible.cfg", destination: "~/.ansible.cfg"
   config.vm.provision "file", source: "./MyInventory", destination: "~/.ansible/MyInventory"
   config.vm.provision "file", source: "~/.config/openstack/clouds.yaml", destination: "~/.config/openstack/clouds.yaml"
   

@@ -1,34 +1,16 @@
 ---
-#
-# EECS 4287/5287: Principles of Cloud Computing
-# Author: Aniruddha Gokhale
-# Created: Fall 2017
-# Modified: Fall 2020
-#
-# This playbook is our demo master file
-# The goal is to show how to have a single master file which then
-# includes multiple plays according to some well-designed choreography
-#
-# This file is similar to the one in the AnsibleOnly_Local_and_Cloud folder
-# For now I just kept one play in here but feel free to add more.
-#####################################################
-### Play 1: Get facts from all our VMs
-#
-# Here I show the use of import_tasks from child playbooks
-#####################################################
-- name: "Play 1: Perform fact gathering on all VMs"
-  hosts: MyLocalVMs          # specified in the MyInventory file
-  remote_user:  ubuntu      # note that the user is ubuntu for 
-                             # vagrant-created VM else use the
-                             # appropriate user name
 
-  gather_facts: yes          # We ask Ansible to collect all facts
-  become_user: yes            # No need for sudo as we are not installing anything
+#- import_playbook: playbook_master.yml
 
-  tasks:    # the task to be performed (here I am showing the effect of include_)
-  #- include_tasks: tasks/playbook_raw_task.yml
-  #- include_tasks: tasks/playbook_get_facts_local_vm.yml
-  - include_tasks: tasks/playbook_cloud_create_vm.yml
+#- import_playbook: playbooks/firewall_setup_cloud.yml
+#- import_playbook: playbooks/install_kafka.yml
+#- import_playbook: playbooks/config_kafka_zookeeper_vm2.yml
+#- import_playbook: playbooks/config_kafka_only_vm3.yml
+#- import_playbook: playbooks/copy_consumer_to_vm3.yml
 
+#- import_playbook: playbooks/start_zookeeper_server.yml
+#- import_playbook: playbooks/start_kafka_both.yml
+#- import_playbook: playbooks/kafka_create_topic.yml
+#- import_playbook: playbooks/install_couchdb_vm3.yml
+#- import_playbook: playbooks/start_consumer_vm3.yml
 ...
-

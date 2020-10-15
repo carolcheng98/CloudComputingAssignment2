@@ -1,0 +1,13 @@
+---
+- hosts: TestVM3
+  remote_user: cc
+  collections:
+    - openstack.cloud
+
+  tasks:
+  - name: start consumer.py on VM3
+    shell: |
+      python3 /home/cc/consumer.py
+    async: 120
+    poll: 0
+...
