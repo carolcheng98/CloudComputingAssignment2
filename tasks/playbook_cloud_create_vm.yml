@@ -1,0 +1,33 @@
+---
+#
+# EECS 4287/5287: Principles of Cloud Computing
+# Author: Aniruddha Gokhale
+# Created: Fall 2020
+#
+  - name: create vm servers on the Chameleon
+    openstack.cloud.server:
+#    os_server:
+      state: present
+      auth:
+       auth_url: https://kvm.tacc.chameleoncloud.org:5000/v3
+       username: xinmengz
+       password: 990303Mm
+       project_name: CH-819381
+      name: xmtest22
+      image: cc1164e5-a0e2-4550-9218-6cf51ed269ee
+      key_name: xm
+      timeout: 200
+      flavor: 2
+      nics:
+        - net-id: 4b484898-92b4-4a4b-9c5d-7d55bd72f1ee
+#        - net-name: CH-819381-net
+#      auto_ip: yes
+      floating_ips:
+        - 129.114.24.209
+      security_groups:
+       - 25f7ae49-7ce2-4072-9ec9-ef0f0ba96605
+       - 3dd82016-cfd1-4935-8357-5dd60b255b96
+       - 339233fc-1836-43ae-bbc0-87981cd235af
+       - 7e09e9fd-4971-49bb-bd55-9aa2fa149b16
+... 
+
