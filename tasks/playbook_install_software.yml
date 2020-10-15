@@ -1,0 +1,19 @@
+---
+#
+# EECS 4287/5287: Principles of Cloud Computing
+# Author: Aniruddha Gokhale
+# Created: Fall 2016
+# Modified: Fall 2020
+#
+# This playbook will install python on our Cloud VM
+# Python is needed to run Ansible.  Python is the first thing we need.
+# But if Python doesn't exist on the machine, then how can ansible
+# execute. This is a chicken-and-egg problem. To overcome this
+# Ansible supports "pre_tasks" which can be raw.
+#
+    - name: 'install openstacksdk'     # always a good practice to name tasks
+      raw: sudo -H pip3 install --upgrade  openstacksdk    # raw module does not need
+    - name: 'install collection'     # always a good practice to name tasks
+      raw: ansible-galaxy collection install openstack.cloud    # raw module does not need
+...
+
