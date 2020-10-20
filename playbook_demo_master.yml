@@ -12,5 +12,5 @@
 #- import_playbook: playbooks/start_kafka_both.yml
 #- import_playbook: playbooks/kafka_create_topic.yml
 #- import_playbook: playbooks/install_couchdb_vm3.yml
-#- import_playbook: playbooks/start_consumer_vm3.yml
+- import_playbook: playbooks/start_consumer_vm3.yml
 ...

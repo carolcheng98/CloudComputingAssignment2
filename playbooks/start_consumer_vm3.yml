@@ -8,6 +8,6 @@
   - name: start consumer.py on VM3
     shell: |
       python3 /home/cc/consumer.py
-    async: 120
+    async: 300
     poll: 0
 ...
