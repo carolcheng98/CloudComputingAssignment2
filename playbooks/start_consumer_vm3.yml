@@ -5,6 +5,11 @@
     - openstack.cloud
 
   tasks:
+  - name: install python dependencies (Kafka, couchdb)
+    shell: |
+      sudo -H python3 -m pip install kafka-python
+      sudo -H python3 -m pip install couchdb
+    
   - name: start consumer.py on VM3
     shell: |
       python3 /home/cc/consumer.py
